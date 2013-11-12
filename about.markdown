@@ -3,20 +3,20 @@ title: about
 layout: page
 ---
 
-a
+A
 
-> Minimalist | Appleist | Unixer | Coder
+> Appleist | Linuxer | Coder | Hate-Windowser
 
-who involved in 
+Who involved in 
 
 > [github](https://github.com/yichenluan/yichenluan.github.io)
 
-mail 
+Mail 
 
-> echo srvpqxfbyqfvpdtkbjwt | tr yxwvtsrqpkjfdb zuonmlihgeca@.
+> huuunnnter@gmail.com
 
-or follow 
+or Follow 
 
-> [@o_lll](https://twitter.com/#!/o_lll)
+> [@金科](http://www.renren.com/389481057)
 
 to reach me
