@@ -1,5 +1,5 @@
 ---
-title: archive
+title: ponder
 layout: page
 ---
 
