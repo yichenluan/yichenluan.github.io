@@ -101,6 +101,7 @@ tags:
         要意识到参数不过是个字典
         
     - 通过`getattr`来获取对象引用
+    
         使用`getattr`，可以得到一个直到运行时才知道名称的函数的引用
         
         最常见的例子是通过它来创建分发者
@@ -108,6 +109,7 @@ tags:
         首先假设在`statsout`模块定义了三个输出函数：`output_html`,`output_xml`,`output_text`
         
         那么定义唯一的输出函数如下：
+        
         ```
         import statsout
         
@@ -119,6 +121,7 @@ tags:
     - 列表的过滤
     
         例子：
+        
         ```
         li = ['a','mpilgrim','foo','b','c','d']
         [elem for elem in li if len(elem)>1]
@@ -128,6 +131,7 @@ tags:
         - `1 and a or b`相当于 `1 ? a:b`;`0 and a or b`相当于`0 ? a:b `
         - 但时单`a` 为空时，and-or技巧失效
         - 解决方法：
+        
             ```
             a = ''
             b = 'second'
@@ -136,6 +140,7 @@ tags:
         注意[a]是个非空列表
         
     - 使用lambda函数
+    
         ```
         g = lambda x: x*2
         processFunc = collapse and (lambda s : ' '.join(s.spilt())) or (lambda s:s)
