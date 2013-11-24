@@ -8,7 +8,6 @@ tags:
 
 另开一文继续写`Dive into Python`的笔记。
 
-##Chapter 5. 对象和面向对象
 
 - ###使用 `from module import`导入模块：
 
