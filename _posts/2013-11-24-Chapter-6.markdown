@@ -1,0 +1,102 @@
+---
+title: 《Dive into Python》 异常和文件处理
+layout: post
+guid: urn:uuid:6a0f8df5-6f92-4a07-996c-4061e23d0026
+tags:
+  - Python
+---
+
+- ##异常处理
+    
+    - 使用不存在的字典关键字 -> KeyError
+    - 搜索列表中不存在的值 -> ValueError
+    - 调用不存在的方法 -> AttributeError
+    - 引用不存在的变量 -> TypeError
+    
+- ##与文件对象共事
+    
+    - 打开文件
+
+    ```
+    f = open ('/music/kairo.mp3','rb')
+    ```
+    三个参数：文件名，模式和缓冲区参数
+    
+    - 读取文件
+    
+    ```
+    f.tell()
+    f.seek(-128,2)
+    tagData = f.read(128)
+    ```
+    tell方法告诉你文件的当前位置；seek方法移动文件，第二个参数代表移动方式：0代表移动绝对位置，1代表移动当前的相对位置，2代表相对与文件尾移动；read方法读取指定个数的字节
+    
+    - 处理 I/O 错误
+    
+    ```
+    try :
+        fsock = open(filename,"rb",0)
+        try :
+            fsock.seek(-128,2)
+            tagdata = fsock.read(128)
+        finally:
+            fsock.close()
+            
+    except IOError:
+        pass
+    ```
+    
+    - 写入文件
+    
+    Apeend模式将数据追加到文件尾，write模式将覆盖文件的原有内容
+    
+- ##使用 `sys.modules`
+
+    ```
+    import sys
+    print '\n'.join(sys.modules.keys())
+    ```
+    sys.modules是一个字典，它包含里了Python开始运行起，被导入的所有模块
+    
+    ```
+    from fileinfo import MP3FileInfo
+    MP3FileInfo.__module__
+    ```
+    每个Python类都有内置类属性__module__,它定义了这个类的模块的名字
+    
+- ##与目录共事
+
+    - 构造目录名
+    
+    ```
+    import os
+    os.path.join('c:\\music\\ap','mahadeva.mp3')
+    >>'c:\\music\\ap\\mahadeva.mp3'
+    ```
+    
+    - 分割路径名
+    
+    ```
+    os.path.split('C:\\music\\mahadeva.mp3')
+    >>('C:\\music','mahadeva.mp3')
+    os.path.splitext('mahadeva.mp3')
+    >>('mahadeva','.mp3')
+    ```
+    
+    - 列出目录
+    
+    ```
+    os.listdir('C:\\music\\singles')
+    >>['a.mp3','b.mp3']
+    ```
+    
+    - 强大的glob，列出目录
+    
+    ```
+    import glob
+    glob.glob('C:\\music\\*.mp3')
+    >>['C:\\music\\a.mp3','C:\\music\\b.mp3']
+    ```
+    *.mp3是通配符，表示以.mp3结尾的文件，参考正则表达式
+    
+    
