@@ -1,5 +1,5 @@
 ---
-title: 《Dive into Python》 Chapter 5
+title: 《Dive into Python》 对象和面向对象
 layout: post
 guid: urn:uuid:6a0f8df5-6f92-4a07-996c-4061e23d0026
 tags:
