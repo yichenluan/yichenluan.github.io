@@ -6,7 +6,6 @@ markdown: rdiscount
 
 author: "yichenluan"
 atom-baseurl: "http://weibo.com/3105994941"
-disqus: "gopherwood"
 
 navigations:
   - title: Archive
