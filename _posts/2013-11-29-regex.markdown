@@ -1,0 +1,77 @@
+---
+title: 正则表达式
+layout: post
+guid: urn:uuid:6a0f8df5-6f92-4a07-996c-4061e23d0026
+tags:
+  - Python
+---
+
+
+一些人，遇到一个问题时就像：“我知道，我将使用正则表达式。”，那么，现在他有两个问题了。
+
+这句话很有意思，一方面表现了正则表达式的强大，另一方面它也并不能为每一个问题提供正确的答案。学习正则表达式是看Dive Into Python中的一个章节，但我觉得正则表达式足够强大到独立一章了，故把一些别的博客里的内容也摘抄将进来。
+
+
+- ##Python相关
+
+    - re模块
+    
+    ```
+    import re
+    ```
+    
+    在Python中，所有和正则表达式相关的功能都包含在re模块中，re模块中包含很多与正则表达式有关的函数
+    
+    - re.sub()
+    
+    ```
+    import re
+    re.sub('ROAD$','RD.',s)
+    ```
+    
+    这个函数的功能为对字符串s进行搜索，满足正则表达式'ROAD$'，的用'RD.'替换。
+    
+    - re.search()
+    
+    ```
+    import re
+    pattern = '^M?M?M?$'
+    re.search(pattern, 'MM')
+    ```
+    
+    search函数有两个参数，一个是正则表达式（pattern），一个时字符串，该函数试图匹配字符串，如果发现，则返回一个拥有多种方法可以描述这个匹配的对象，否则，返回NONE。
+    
+    - 松散正则表达式
+    
+    ```
+    pattern = """
+    ^   # beginning of string
+    M?
+    M?
+    $
+    """
+    
+    re.search(pattern, 'M',re.VERBOSE)
+    ```
+    
+    使用松散正则表达式，要在函数后面加上`re.VERBOSE`参数
+    
+    - 避免反斜线灾难
+    
+    ```
+    re.sub(r'\bROAD$',’RD.',s)
+    ```
+    
+    在字符串前加上r使得避免转义
+    
+- ##正则表达式语法
+
+![regex_1](/media/files/regex_1.png)
+![regex_2](/media/files/regex_2.png)
+![regex_3](/media/files/regex_3.png)
+
+
+---
+参考 [正则表达式](http://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)
+
+
