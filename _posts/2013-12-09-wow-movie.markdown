@@ -1,5 +1,5 @@
 ---
-title: 《Dive into Python》笔记
+title: 关于WOW的那些事
 layout: post
 guid: urn:uuid:6a0f8df5-6f92-4a07-996c-4061e23d0026
 tags:
@@ -7,6 +7,8 @@ tags:
   - Game
 ---
 
-测试一下能不能插入视频链接。
+先测试一下能不能插入视频链接。
+
+缓更。。。
 
 <embed src="http://player.youku.com/player.php/sid/XNjEzNTc2NDAw/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
