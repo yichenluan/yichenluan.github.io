@@ -17,9 +17,9 @@ navigations:
   - title: About
     class: icon-user
     href: /about.html
-  - title: Gallery
+  - title: Project
     class: icon-film
-    href: http://weibo.com/3105994941
+    href: /projects.html
   - title: Blogroll
     class: icon-link
     href: /links.html
