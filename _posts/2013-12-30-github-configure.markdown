@@ -12,27 +12,27 @@ tags:
 
 要让本地与 Github 通信，需要先配置好 SSH key.
 	 
-- 检查是否已有 SSH key
+1. 检查是否已有 SSH key
 
 	```
 	cd  ~/.ssh
 	```
 	如果出现`No such file or directory` ，说明本地缺少 SSH key
 
-- 创建新的 SSH key
+2. 创建新的 SSH key
 
 	```
 	ssh-keygen -t rsa -C "email@email.con"
 	```
 	这时会出现保存路径提示和之后的密码提示，全部直接回车默认即可。
 	
-- 将 SSH key 添加到你的 Github 上
+3. 将 SSH key 添加到你的 Github 上
 
 	首先到上一步的默认保存文件夹内找到 id_rsa.pub 文件，打开后，复制里面的所有内容。
 	
 	然后进入 Github 中个人设置里面的 `SSH Public Keys` ，添加 Key。
 
-- 测试是否添加成功
+4. 测试是否添加成功
 
 	```
 	ssh -T git@github
@@ -44,14 +44,14 @@ SSH 配置结束
 
 ##与远程版本库通信
 
-- 配置 git 的用户名和 email
+1. 配置 git 的用户名和 email
 
 	```
 	git config --global user.name "yourname"
 	git config --global user.email "youremail"
 	```
 	
-- 克隆一个远程版本库
+2. 克隆一个远程版本库
 
 	```
 	git clone git@github.com:yichenluan/yichenluan.github.io.git
