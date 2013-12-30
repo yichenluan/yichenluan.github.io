@@ -6,6 +6,7 @@ tags:
   - Linux
 ---
 
+![img](http://pic.yupoo.com/hanapp/DoQbujO1/custom.jpg)
 
 操作系统的最后一个 Lab 是写一个简单的文件系统，在复习的时候，为了更加深入的理解 inode，看了好一些博客文章，我把对我启发最大的两篇链接到下面。
 
