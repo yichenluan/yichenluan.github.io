@@ -17,6 +17,6 @@ Mail
 
 or Follow 
 
-> [@金科](http://www.renren.com/389481057)
+> [@金科](http://http://weibo.com/u/3105994941)
 
 to reach me
