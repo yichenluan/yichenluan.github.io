@@ -17,6 +17,6 @@ Mail
 
 or Follow 
 
-> [@金科](http://http://weibo.com/u/3105994941)
+> [@金科](http://weibo.com/u/3105994941)
 
 to reach me
