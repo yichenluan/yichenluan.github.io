@@ -15,7 +15,7 @@ tags:
 
 	但是在第一次安装jekyll的时候遇到了一些问题，装完之后，执行`jekyll -v`命令，会报错。
 
-	捣鼓了半天，期间安装了 `Ruby1.9.1`和`Ryby1.9.1-dev`，再重新执行`gem install jekyll`就成功了。
+	捣鼓了半天，期间安装了 `Ruby1.9.1`和`Ruby1.9.1-dev`，再重新执行`gem install jekyll`就成功了。
 
 - 新建博客文件夹
 	
