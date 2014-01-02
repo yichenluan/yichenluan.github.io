@@ -7,7 +7,7 @@ layout: page
 
 - 数字图像处理平时作业
 
-> [ImageProcess](https://github.com/yichenluan/ImageProcess)
+> [ImageProcess](http://jinke.me/ImageProcess/)
 
 - 个人博客
 
@@ -15,4 +15,4 @@ layout: page
 
 - 操作系统实验
 
-> [OSLabs](https://github.com/yichenluan/OSLab)
+> [OSLabs](http://jinke.me/OSLab/)
