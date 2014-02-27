@@ -1,0 +1,126 @@
+---
+title: 我的 Vim 设置
+layout: post
+tags:
+  - Vim
+---
+
+折腾了一整个下午的Vim，总算是把它弄到了我最认可的状态。配置文件已经上传到[Github](...)上了，下面具体描述下用到的插件等。
+
+###Vundle
+
+Vundle 是一个Vim的插件管理器，使用它来管理Vim的插件非常方便，而且日后重新配置Vim时只需要拷贝一份`.vimrc`文件即可。
+
+Github项目地址：[link](https://github.com/gmarik/Vundle.vim)
+
+
+###Vim主题：[Solarized](http://ethanschoonover.com/solarized)
+
+
+`Solarized`可谓是最著名的Vim配色主题了，效果也确实非常不错。要安装的话，只需在`.vimrc`文件中加入 `Bundle 'altercation/vim-colors-solarized'`，然后再执行`:BundleInstall`命令即可。
+
+###目录树：[Nerdtree](https://github.com/scrooloose/nerdtree)
+
+设置打开关闭目录树快捷键：
+
+```
+map <C-n> :NERDTreeToggle<CR>
+```
+
+这样子就可以通过`Ctrl+N`来控制目录树了。
+
+常用操作：
+
+```
+在nerdtree和文件之间转换：
+    Ctrl+W+H / Ctrl+W+l
+
+在nerdtree窗口常用操作：(小写当前，大写root)
+    x.......收起当前目录树
+    R.......刷新根目录树
+    r.......刷新当前目录
+    P.......跳转至根目录
+    p.......跳转至当前节点的父节点
+    K.......到同目录第一个节点
+    J.......最后一个节点
+    i.......上下分屏
+    s.......左右分屏
+```
+###括号高亮：[Rainbow_parentheses](https://github.com/kien/rainbow_parentheses.vim)
+
+方便代码阅读。
+
+在`.vimrc`中设置如下：
+
+```
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+```
+
+
+###页面内移动：[vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
+
+设置leader键：`let g:mapleader=','`
+
+EasyMotion提供了比h, j, k, l更快速的移动方式，能快速定位。它的有效范围是当前可视窗口，不可以定位中文。
+
+操作命令：
+
+```
+,,w<Target Key>                     光标向下定位所有单词首字母
+,,e<Target Key>                     光标向下定位所有单词尾字母
+,,b<Search Character>               光标向上定位所有单词首字母
+,,gE<Target Key>                    光标向上定位所有单词字母末尾
+,,f<Search Character><Target Key>   光标向下定位所有要查找的字符
+```
+
+
+###批量加减注释：[Nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+
+操作命令：
+
+```
+Shift+v+方向键选中      ->  ,cc 加上注释    ->  ,cu 解开注释
+```
+
+
+###括号自动补全：[DelimitMate](https://github.com/Raimondi/delimitMate)
+
+输入引号、括号时，自动进行补全。
+
+
+###语法及风格检查：[Syntastic](https://github.com/scrooloose/syntastic)
+
+默认情况下讲代码就行保存时，会自动进行检查并标出错误。
+
+###Markdown语法插件：[vim-markdown](https://github.com/plasticboy/vim-markdown)
+
+本文章即在vim下编辑完成。
+
+去除折叠：`let g:vim_markdown_folding_disabled=1`
+
+
+---
+END
