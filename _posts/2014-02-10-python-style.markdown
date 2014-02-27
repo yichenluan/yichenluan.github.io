@@ -9,16 +9,16 @@ tags:
 翻译自[pyguide](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
 
 
-###背景
+##背景
 
 Python 是 Google 使用的最主要的脚本语言。这个编码风格指南是在 Python 代码里的一系列`可以`和`不可以`。
 为了帮助你写出格式正确的代码，我们制定了一个 Vim 的[设置文件](http://google-styleguide.googlecode.com/svn/trunk/google_python_style.vim)。对于 Emacs 而言，默认设置就不错。
 
 ---
 
-###Python 语言规则
+##Python 语言规则
 
-#####Lint
+###Lint
 
 运行`pylint`来检查你的代码。
 
@@ -65,7 +65,7 @@ Python 是 Google 使用的最主要的脚本语言。这个编码风格指南�
 
 	
 	
-#####Imports
+###Imports
 
 只使用 `import` 来导入模块和包
 
@@ -97,7 +97,7 @@ Python 是 Google 使用的最主要的脚本语言。这个编码风格指南�
 		echo.EchoFilter(input, output, delay = 0.7, atten = 4)
 		```
 		
-#####Packages
+###Packages
 
 每个模块都通过它的完整路径来导入
 
@@ -123,7 +123,7 @@ Python 是 Google 使用的最主要的脚本语言。这个编码风格指南�
 		from sound.effects import echo
 		```
 		
-#####Exceptions
+###Exceptions
 
 允许异常处理但必须小心使用。
 
@@ -142,8 +142,8 @@ Python 是 Google 使用的最主要的脚本语言。这个编码风格指南�
 - *决策*
 
 	异常处理必须遵循特定的条件：
+	
 	- 像这样子抛出异常： `raise MyException('Error message')  或者 `raise MyException`。不要使用双参数的形式 `(raise MyException, "Error message")` 或者已废弃的基于字符串的异常处理 `raise "Error message"`
-	- 
 
 
 
