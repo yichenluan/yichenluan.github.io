@@ -50,8 +50,8 @@ class DmozItem(Item):
 
 几个 XPath 的例子：
 
-- `/html/head/title`:在 html 文件中的 <head> 部分选择 <title> 元素
-- `/html/head/title/text()`：选择 <title> 元素中的文本信息
+- `/html/head/title`:在 html 文件中的 `<head>` 部分选择 `<title>` 元素
+- `/html/head/title/text()`：选择 `<title>` 元素中的文本信息
 
 Scrapy 中的 Selector 类的基本方法：
 
