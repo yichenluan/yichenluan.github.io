@@ -3,6 +3,5 @@ title: links
 layout: page
 ---
 
-[暂无](http://weibo.com/3105994941)  
+[彼方の幻想乡](http://blog.0w0.so/)
 
-*# sort*

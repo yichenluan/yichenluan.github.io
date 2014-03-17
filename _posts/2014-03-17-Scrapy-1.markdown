@@ -1,0 +1,119 @@
+---
+title:  Scrapy 学习笔记「一」
+layout: post
+tags:
+  - Web
+  - Python
+---
+
+![jpg](http://pic.yupoo.com/hanapp/DA4HEUQJ/custom.jpg)
+
+安装 Scrapy 的过程在此不提，有需要的同学直接看[官方文档](http://doc.scrapy.org/en/latest/)的安装部分即可。
+
+###1. 创建项目
+
+在终端下执行 `scrapy startproject tutorial`，就会生成一个 `tutorial` 文件夹。文件夹的内容如下:
+
+```
+tutorial/
+	scrapy.cfg
+	tutorial/
+		__init__.py
+		items.py
+		pipeilines.py
+		settings.py
+		spiders/
+			__init__.py
+```
+具体文件的意义为：
+
+- `scrapy.cfg`		：		项目配置文件
+- `tutorial/`		：		项目下的 Python 模块，我们会在这里面添加代码
+- `tutorial/items.py`：	项目的 items 文件
+- `tutorial/pipeilines.py`：项目的 pipeilines 文件
+- `tutorial/settings.py`：项目的设置文件
+- `tutorial/spiders/`：放置爬虫文件的文件夹
+
+###2. 定义 `item`
+
+修改 `tutorial/items.py` 文件如下：
+
+```
+from scrapy.item import Item, Field
+
+class DmozItem(Item):
+	title = Field()
+	link = Field()
+```
+
+###3. 使用 `XPath` 来获得信息
+
+几个 XPath 的例子：
+
+- `/html/head/title`:在 html 文件中的 <head> 部分选择 <title> 元素
+- `/html/head/title/text()`：选择 <title> 元素中的文本信息
+
+Scrapy 中的 Selector 类的基本方法：
+
+- `extract()`：返回被选中数据的 unicode 字符串
+
+
+###4. 使用 `item`
+
+item 对象就类似于 Python 中的字典。
+
+```
+item = DmozItem()
+item ['title'] = 'Example title'
+```
+
+###5. 构建爬虫
+
+在 `tutorial/spiders` 中新建 `dmoz_spider.py` 文件如下:
+```
+from scrapy.spider import Spider
+from scrapy.selector import Selector
+
+from tutorial.items import DmozItem
+
+class DmozSpider(Spider):
+	name = "dmoz"
+	allowed_domains = ["dmoz.org"]
+	start_urls = [        "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",        "http://www.dmoz.org/Computers/Programming/Languages/Python/	Resources/"		]
+	def parse(self, response):
+		sel = Selecor(response)
+		sites = sel.xpath('//ul/li')
+		items = []
+		for site in sites:
+			item = DmozItem()
+			item['title'] = site.xpath('a/text()').extract()
+			item['link'] = site.xpath('a/@href').extract()
+			items.append(item)
+		return items
+```
+
+要执行爬虫，只需返回`tutorial/`根目录，执行命令如下：
+
+`scrapy crawl dmoz`
+
+###6. 存储数据
+
+最简单的方法是使用内置方法将数据存储为 `json` 格式文件，执行命令如下：
+
+`scrapy crawl dmoz -o items.json -t json`
+
+
+---
+END
+
+
+
+
+
+
+
+
+
+
+
+
