@@ -70,6 +70,7 @@ item ['title'] = 'Example title'
 ###5. 构建爬虫
 
 在 `tutorial/spiders` 中新建 `dmoz_spider.py` 文件如下:
+
 ```
 from scrapy.spider import Spider
 from scrapy.selector import Selector
