@@ -11,7 +11,7 @@ layout: page
 
 - 个人博客
 
-> [yichenluan.github.io](https://github.com/yichenluan/yichenluan.github.io)
+> [jinke.me](https://github.com/yichenluan/yichenluan.github.io)
 
 - 操作系统实验
 
@@ -19,6 +19,6 @@ layout: page
 
 - 第一版liNK
 
-> [liNK](http://link.jinke.me)
+> [liNK](http://listlink.sinaapp.com)
 
 
