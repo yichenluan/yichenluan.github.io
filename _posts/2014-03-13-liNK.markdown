@@ -18,7 +18,7 @@ tags:
 
 SAE 没什么好说的，GAE 有被墙的风险，所以不作考虑，国内的也就 SAE 发展的最好，也支持 Python 和 Tornado。但整个构建网站过程中，我花在熟悉 SAE 上的时间是最多的。SAE 对于 Tornado 有两种构建方式，我一开始把这两种方法弄混了，导致进度一直卡在这里。
 
-对我写 [liNK](http://link.jinke.me) 帮助最大的莫过于[人在北理](http://atbit.org)的[源码](https://github.com/liamchzh/atbit)。
+对我写 [liNK](http://listlink.sinaapp.com) 帮助最大的莫过于[人在北理](http://atbit.org)的[源码](https://github.com/liamchzh/atbit)。
 
 到现在为止，我是不准备继续开发这个版本的 liNK 了。因为现在完成的内容非常简单，也和我仔细思考后的网站架构不太一致。所以，我打算重新开发另一个版本的 liNK。
 
