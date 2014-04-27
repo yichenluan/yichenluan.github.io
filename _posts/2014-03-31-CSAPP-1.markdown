@@ -1,5 +1,5 @@
 ---
-title:  CSAPP 学习笔记「一」
+title:  CSAPP 学习笔记「计算机系统漫游」
 layout: post
 tags:
   - Computer

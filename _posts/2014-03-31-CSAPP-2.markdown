@@ -1,5 +1,5 @@
 ---
-title:  CSAPP 学习笔记「二」
+title:  CSAPP 学习笔记「信息的表示和处理」
 layout: post
 tags:
   - Computer
