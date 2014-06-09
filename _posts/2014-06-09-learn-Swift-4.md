@@ -31,10 +31,13 @@ tags:
 	```
 	shoppingList.append("Flour")
 	```
+	
 	也可以
+	
 	```
 	shoppingList += "Baking Powder"
 	```
+	
 	替换元素，Swift 允许替换范围大于替换后的元素个数
 	
 	```
@@ -72,10 +75,13 @@ tags:
 - 方法
 
 	统计字典元素个数
+	
 	```
 	airports.count
 	```
+	
 	更新字典值，如果不存在该 key ，则会返回 nil
+	
 	```
 	let oldValue = airports.updateValue("Dublin International", forKey: "DUB")
 	```
@@ -85,12 +91,16 @@ tags:
 	```
 	let removedValue = airports.removeValueForKey("DUB")
 	```
+	
 	获取字典 key
+	
 	```
 	let airportCodes = Array(airports.keys)
 	for airportCode in airports.keys{...}
 	```
+	
 	获取字典 value
+	
 	```
 	let airportName = Array(airports.values)
 	for airportName in airports.values{...}
