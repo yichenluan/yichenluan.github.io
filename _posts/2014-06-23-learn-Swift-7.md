@@ -68,5 +68,8 @@ someFunctionThatTakesAClosure() {
 }
 ```
 
+---
+END
+
 
 
