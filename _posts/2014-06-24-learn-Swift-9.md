@@ -1,5 +1,5 @@
 ---
-title:  Swift 学习笔记 「枚举」
+title:  Swift 学习笔记 「类与结构体」
 layout: post
 tags:
   - Program
