@@ -1,7 +1,7 @@
 markdown: rdiscount
 pygments: true
 permalink: /:year/:month/:day/:title.html
-name: 比较困
+name: Process Results
 markdown: rdiscount
 
 author: "yichenluan"
