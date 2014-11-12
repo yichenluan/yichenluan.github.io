@@ -1,7 +1,7 @@
 ---
-title: messageBoard
+title: 留言
 layout: post
 ---
 
 
-<hr>
+这里是我用多说弄得一个留言版，欢迎匿名或实名留言，说你所说，问你想问。
