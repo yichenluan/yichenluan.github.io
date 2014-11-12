@@ -23,7 +23,6 @@ navigations:
   - title: Blogroll
     class: icon-link
     href: /links.html
-  - title: Subscribe
+  - title: MessageBoard
     class: icon-rss
-    href: /atom.xml
-
+    href: /messageBoard.html
