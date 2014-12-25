@@ -39,7 +39,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))
-````
+```
 
 ##Chapter 2.内置数据类型
 
@@ -187,3 +187,122 @@ if __name__ == '__main__':
 	True
 	```
 	
+##Chapter 3.解析
+
+###处理文件和目录
+
+- 当前工作目录
+
+	```
+	>>> import os 
+	>>> print(os.getcwd()) 			#获取当前工作目录
+	C:\Python31
+	>>> os.chdir('/Users/pilgrim/diveintopython3/examples') #改变当前工作目录
+	>>> print(os.getcwd()) 
+	C:\Users\pilgrim\diveintopython3\examples
+	```
+
+- 处理文件名和目录名
+
+	```
+	>>> import os
+	>>> print(os.path.expanduser('~')) 	#用来将包含 ~ 符号的路径扩展为完整的路径
+	c:\Users\pilgrim
+	#很方便的构造出用户目录下的文件和目录的路径
+	>>> print(os.path.join(os.path.expanduser('~'), 'diveintopython3', 'examples', 'humansize.py')) 
+	c:\Users\pilgrim\diveintopython3\examples\humansize.py
+	```
+	
+	os.path 也包含用于分割完整路径名，目录名和文件名的函数
+	
+	```
+	>>> pathname = '/Users/pilgrim/diveintopython3/examples/humansize.py'
+	>>> os.path.split(pathname) 
+	('/Users/pilgrim/diveintopython3/examples', 'humansize.py')
+	>>> (dirname, filename) = os.path.split(pathname) 
+	>>> dirname 
+	'/Users/pilgrim/diveintopython3/examples'
+	>>> filename 
+	'humansize.py'
+	>>> (shortname, extension) = os.path.splitext(filename) 
+	>>> shortname
+	'humansize'
+	>>> extension
+	'.py'
+	```
+	
+###列表解析
+
+- 实现通过对列表中每一个元素应用一个函数的方法来将一个列表映射到另一个列表
+
+	```
+	>>> a_list = [1, 9, 8, 4]
+	>>> [elem * 2 for elem in a_list] 
+	[2, 18, 16, 8]
+	>>> a_list 
+	[1, 9, 8, 4]
+	>>> a_list = [elem * 2 for elem in a_list] 
+	>>> a_list
+	[2, 18, 16, 8]
+	```
+
+- 列表解析可以使用任何的 Python 表达式
+
+	```
+	>>> import os, glob
+	>>> [f for f in glob.glob('*.py') if os.stat(f).st_size > 6000] 
+	['pluraltest6.py',
+	'romantest10.py',
+	'romantest6.py',
+	'romantest7.py',
+	'romantest8.py',
+	'romantest9.py']
+	```
+	
+###字典解析
+
+- 字典解析和列表解析类似，只不过它生成字典而不是列表
+
+	```
+	>>> import os, glob
+	>>> metadata = [(f, os.stat(f)) for f in glob.glob('*test*.py')] 
+	>>> metadata[0] 
+	('alphameticstest.py', nt.stat_result(st_mode=33206, st_ino=0, st_dev=0,
+	st_nlink=0, st_uid=0, st_gid=0, st_size=2509, st_atime=1247520344,
+	st_mtime=1247520344, st_ctime=1247520344))
+	>>> metadata_dict = {f:os.stat(f) for f in glob.glob('*test*.py')} 
+	>>> type(metadata_dict) 
+	<class 'dict'>
+	>>> list(metadata_dict.keys()) 
+	['romantest8.py', 'pluraltest1.py', 'pluraltest2.py', 'pluraltest5.py',
+	'pluraltest6.py', 'romantest7.py', 'romantest10.py', 'romantest4.py',
+	'romantest9.py', 'pluraltest3.py', 'romantest1.py', 'romantest2.py',
+	'romantest3.py', 'romantest5.py', 'romantest6.py', 'alphameticstest.py',
+	'pluraltest4.py']
+	>>> metadata_dict['alphameticstest.py'].st_size 
+	2509
+	```
+
+- 小技巧：交换字典的键和值
+
+	```
+	>>> a_dict = {'a': 1, 'b': 2, 'c': 3}
+	>>> {value:key for key, value in a_dict.items()}
+	{1: 'a', 2: 'b', 3: 'c'}
+	```
+	
+###集合解析
+
+```
+>>> a_set = set(range(10))
+>>> a_set
+{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+>>> {x ** 2 for x in a_set} 
+{0, 1, 4, 81, 64, 9, 16, 49, 25, 36}
+>>> {x for x in a_set if x % 2 == 0} 
+{0, 8, 2, 4, 6}
+>>> {2**x for x in range(10)} 
+{32, 1, 2, 4, 8, 64, 128, 256, 16, 512}
+```
+
+
