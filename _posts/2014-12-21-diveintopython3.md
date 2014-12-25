@@ -306,3 +306,61 @@ if __name__ == '__main__':
 ```
 
 
+##Chapter 4.字符串
+
+###格式化字符串
+
+-  `'{0:.1f} {1}'.format(size, suffix)` 发生了什么？
+-  Python 3 支持把值格式化成字符串，最基本的用法是使用单个占位符将一个值插入字符串
+
+	```
+	>>> username = 'mark'
+	>>> password = 'PapayaWhip'                             
+	>>> "{0}'s password is {1}".format(username, password)  
+	"mark's password is PapayaWhip"
+	```
+	
+- 复合字段名
+
+	```
+	>>> import humansize
+	>>> si_suffixes = humansize.SUFFIXES[1000]      
+	>>> si_suffixes
+	['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+	>>> '1000{0[0]} = 1{0[1]}'.format(si_suffixes)  
+	'1000KB = 1MB'
+	```
+	
+	可以通过利用 Python 的语法访问到对象的元素或属性，这就叫复合字段名。
+	
+- 格式说明符
+
+	```
+	'{0:.1f} {1}'.format(size, suffix)
+	```
+	
+	在替换域中，冒号(:)标示格式说明符的开始。“.1”的意思是四舍五入到保留一们小数点。“f”的意思是定点数
+	
+###其他常用字符串方法
+
+```
+>>> query = 'user=pilgrim&database=master&password=PapayaWhip'
+>>> a_list = query.split('&')                            
+>>> a_list
+['user=pilgrim', 'database=master', 'password=PapayaWhip']
+>>> a_list_of_lists = [v.split('=', 1) for v in a_list]  
+>>> a_list_of_lists
+[['user', 'pilgrim'], ['database', 'master'], ['password', 'PapayaWhip']]
+>>> a_dict = dict(a_list_of_lists)                       
+>>> a_dict
+{'password': 'PapayaWhip', 'user': 'pilgrim', 'database': 'master'}
+```
+
+
+###Python 源码的编码方式
+
+在 Python 2 里，.py 文件默认的编码方式为 ASCII，Python 3 的源码的默认编码方式为 UTF-8
+
+如果想使用不同的编码方式来保存 Python 代码，我们可以在每个文件的第一行放置编码声明（encoding declaration）：
+
+`# -*- coding: windows-1252 -*-`
