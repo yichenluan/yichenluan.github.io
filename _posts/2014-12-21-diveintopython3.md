@@ -370,3 +370,86 @@ if __name__ == '__main__':
 见 [正则表达式](http://jinke.me/2013/11/29/regex.html)
 
 ##Chapter 6.闭合 与 生成器
+
+考虑下编程实现英文的单复数转换：
+
+###使用正则表达式
+
+```
+import re
+
+def plural(noun):          
+    if re.search('[sxz]$', noun):             
+        return re.sub('$', 'es', noun)        
+    elif re.search('[^aeioudgkprt]h$', noun):
+        return re.sub('$', 'es', noun)       
+    elif re.search('[^aeiou]y$', noun):      
+        return re.sub('y$', 'ies', noun)     
+    else:
+        return noun + 's'
+       
+```
+
+###匹配模式列表
+
+更加抽象化
+
+```
+import re
+
+def build_match_and_apply_functions(pattern, search, replace):
+    def matches_rule(word):                                     
+        return re.search(pattern, word)
+    def apply_rule(word):                                       
+        return re.sub(search, replace, word)
+    return (matches_rule, apply_rule)   
+    
+
+patterns = \                                                        
+  (
+    ('[sxz]$',           '$',  'es'),
+    ('[^aeioudgkprt]h$', '$',  'es'),
+    ('(qu|[^aeiou])y$',  'y$', 'ies'),
+    ('$',                '$',  's')                                 
+  )
+rules = [build_match_and_apply_functions(pattern, search, replace)  
+         for (pattern, search, replace) in patterns] 
+         
+def plural(noun):
+    for matches_rule, apply_rule in rules:  
+        if matches_rule(noun):
+            return apply_rule(noun)                       
+```
+
+###生成器
+
+```
+def rules(rules_filename):
+    with open(rules_filename, encoding='utf-8') as pattern_file:
+        for line in pattern_file:
+            pattern, search, replace = line.split(None, 3)
+            yield build_match_and_apply_functions(pattern, search, replace)
+
+def plural(noun, rules_filename='plural5-rules.txt'):
+    for matches_rule, apply_rule in rules(rules_filename):
+        if matches_rule(noun):
+            return apply_rule(noun)
+    raise ValueError('no matching rule for {0}'.format(noun))
+```
+
+yield 暂停一个函数，next() 从其暂停处恢复其运行
+
+```
+def fib(max):
+    a, b = 0, 1          
+    while a < max:
+        yield a          
+        a, b = b, a + b  
+        
+>>> from fibonacci import fib
+>>> for n in fib(1000):      
+...     print(n, end=' ')    
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
+>>> list(fib(1000))          
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+```
