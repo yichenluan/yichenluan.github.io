@@ -364,3 +364,9 @@ if __name__ == '__main__':
 如果想使用不同的编码方式来保存 Python 代码，我们可以在每个文件的第一行放置编码声明（encoding declaration）：
 
 `# -*- coding: windows-1252 -*-`
+
+##Chapter 5.正则表达式
+
+见 [正则表达式](http://jinke.me/2013/11/29/regex.html)
+
+##Chapter 6.闭合 与 生成器
