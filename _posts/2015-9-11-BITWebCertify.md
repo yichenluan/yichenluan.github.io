@@ -11,6 +11,10 @@ tags:
 
 
 
+![BITWebCertify](/media/files/BITWebCertify.png)
+
+
+
 ------
 
 当然，这是 alpha 版。
