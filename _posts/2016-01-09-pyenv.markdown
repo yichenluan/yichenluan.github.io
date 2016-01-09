@@ -83,7 +83,8 @@ pyenv virtualenv 3.5.1 my_project
 
 实际上，创建好的虚拟环境就和一个单独的 Python 版本一样，你可以在 `pyenv versions` 中看到，也可以通过 `local` 和 `global` 命令切换虚拟环境。
 
-同样的，但项目结束，你可以通过 `pyenv uninstall my_project` 来删除该虚拟环境。
+同样的，当项目结束，你可以通过 `pyenv uninstall my_project` 来删除该虚拟环境。
+
 ---
 
 参考文章：
