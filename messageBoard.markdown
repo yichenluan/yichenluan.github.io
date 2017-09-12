@@ -4,4 +4,4 @@ layout: post
 ---
 
 
-这里是我用多说弄得一个留言版，欢迎匿名或实名留言，说你所说，问你想问。
+发邮件给我吧，huuunnnter@gmail.com
