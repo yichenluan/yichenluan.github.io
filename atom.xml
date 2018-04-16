@@ -10,8 +10,8 @@ layout: nil
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>{{ site.atom-baseurl }}</id>
  <author>
-   <name>Linghua Zhang</name>
-   <email>linghua.zhang@me.com</email>
+   <name>Ke Jin</name>
+   <email>huuunnnter@gmail.com</email>
  </author>
 
  {% for post in site.posts limit:10 %}

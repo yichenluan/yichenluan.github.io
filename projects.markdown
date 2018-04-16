@@ -3,15 +3,13 @@ title: Projects
 layout: page
 ---
 
-</br>
+- DeerDB (基于BitCask的单机KV数据库)
+
+> [DeerDB](https://github.com/yichenluan/DeerDB)
 
 - 数字图像处理平时作业
 
 > [ImageProcess](http://jinke.me/ImageProcess/)
-
-- 个人博客
-
-> [jinke.me](https://github.com/yichenluan/yichenluan.github.io)
 
 - 操作系统实验
 
@@ -20,5 +18,9 @@ layout: page
 - 第一版liNK
 
 > [liNK](http://listlink.sinaapp.com)
+
+- BITLogin
+
+> [BITLogin](https://github.com/yichenluan/BITLogin)
 
 
