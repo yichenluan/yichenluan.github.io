@@ -5,7 +5,7 @@ layout: page
 
 A
 
-> Appleist | Linuxer | Coder | Hate-Windowser
+> Appleist | Linuxer | Coder | Baiduer
 
 Who involved in 
 

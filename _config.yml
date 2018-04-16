@@ -1,7 +1,7 @@
 markdown: rdiscount
 pygments: true
 permalink: /:year/:month/:day/:title.html
-name: Process Results
+name: Sleepy
 markdown: rdiscount
 
 author: "yichenluan"
@@ -23,6 +23,6 @@ navigations:
   - title: Blogroll
     class: icon-link
     href: /links.html
-  - title: MessageBoard
+  - title: Subscribe
     class: icon-rss
-    href: /messageBoard.html
+    href: /atom.xml
