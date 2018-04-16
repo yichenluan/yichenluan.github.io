@@ -1,5 +1,5 @@
+
 ---
-layout: nil
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -8,10 +8,9 @@ layout: nil
  <link href="{{ site.atom-baseurl }}/atom.xml" rel="self"/>
  <link href="{{ site.atom-baseurl }}"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{ site.atom-baseurl }}</id>
+ <id>{{ site.atom-baseurl }}/</id>
  <author>
-   <name>Ke Jin</name>
-   <email>huuunnnter@gmail.com</email>
+   <name>{{ site.author }}</name>
  </author>
 
  {% for post in site.posts limit:10 %}
