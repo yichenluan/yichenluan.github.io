@@ -1,0 +1,23 @@
+---
+layout: page
+title: 'Archive'
+---
+
+
+<div class="full-tags-list">
+    {% for post in site.posts %}
+      {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
+      {% if year != y %}
+        {% assign year = y %}
+            <h2 id="{{ y }}" class="linked-section">
+            {{ y }}
+            </h2>
+      {% endif %}
+        <div class="tag-entry">
+            <a href="{{- site.url -}}{{- post.url -}}">{{- post.title -}}</a>
+            <div class="entry-date">
+                <time datetime="{{- post.date | date_to_xmlschema -}}">{{- post.date | date: "%B %d, %Y" -}}</time>
+            </div>
+        </div>
+    {% endfor %}
+</div>
