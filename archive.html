@@ -4,7 +4,7 @@ title: 'Archive'
 ---
 
 
-<div class="full-tags-list">
+<div id="full-tags-list">
     {% for post in site.posts %}
       {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
       {% if year != y %}
@@ -13,11 +13,13 @@ title: 'Archive'
             {{ y }}
             </h2>
       {% endif %}
+    <div class="post-list">
         <div class="tag-entry">
             <a href="{{- site.url -}}{{- post.url -}}">{{- post.title -}}</a>
             <div class="entry-date">
                 <time datetime="{{- post.date | date_to_xmlschema -}}">{{- post.date | date: "%B %d, %Y" -}}</time>
             </div>
         </div>
+    </div>
     {% endfor %}
 </div>
