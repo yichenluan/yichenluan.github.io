@@ -1,12 +1,17 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: 
 ---
 
-我是金科，你可以在下面这些地方找到我。
+我是金科，二十三岁，这是我的基本信息。
 
-- [@金科](http://weibo.com/u/3105994941)
+- 2017.07 ~ Now     : Baidu. C++ / Go
+- 2016.03 ~ 2016.10 : ByteDance. Python
+
+你可以在下面这些地方找到我。
+
+- [@比较困zzz](http://weibo.com/u/3105994941)
 - [github](https://github.com/yichenluan/yichenluan.github.io)
 
 如有问题，随时联系我。
