@@ -202,8 +202,10 @@ if selectnbsend(c, v) {
 	
 - 情况 3
 
- 	获取当前 goroutinne，构造 mysg 结构，放入队列
+	获取当前 goroutinne，构造 mysg 结构，放入队列
  	
+
+
 可以看到，情况1的临界区最小，情况3的临界区最大。
  	
 ## Recv
@@ -287,12 +289,12 @@ recv 的逻辑和 send 互为表里，相互配合，各自维护一个 index �
 产生这个想法是在分析异步日志库的性能问题是发现的，多goroutine写+单goroutine读，中间只通过一个 Channel 来传递日志信息，性能损耗非常可观，关于异步日志库的问题，后续会有更多博客发出来。
 
 ---
-###参考：
+### 参考：
 - [channel in Go's runtime](http://skoo.me/go/2013/09/20/go-runtime-channel)
 - [Go Channel源码分析](https://github.com/yangyuqian/technical-articles/blob/master/go/channel-implementation-cn.md)
 - [Go Channel 源码剖析](http://legendtkl.com/2017/08/06/golang-channel-implement/)
 
 
-###More:
+### More:
 
 - 博客使用 Disqus 作为评论区，需要自备梯子才能看到。
