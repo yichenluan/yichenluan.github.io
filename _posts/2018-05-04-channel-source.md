@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Go in Depth: Channel 源码解析
+title: Go in Depth - Channel 源码解析
 subtitle: 源码面前，了无秘密
 tags: [Go]
 ---
@@ -73,8 +73,9 @@ func makechan(t *chantype, size int64) *hchan {
 }
 ```
 有一个地方还没有想明白：
-{: .box-note}
+
 **Note:** 区分是否一次性分配所需内存的关键在于 `kindNoPointers`，什么是所谓的无指针类型？为什么要分开考虑是否一次性分配内存？
+{: .box-note}
 
 skoo 的[博客](http://skoo.me/go/2013/09/20/go-runtime-channel)上画了一张图，较好的总结了整个 Channel 的结构：
 ![hchan](https://ws3.sinaimg.cn/large/006tKfTcly1fqzd0v4al5j30zk0dit9p.jpg)
