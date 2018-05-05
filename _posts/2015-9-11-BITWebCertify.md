@@ -10,9 +10,9 @@ tags: [Program]
 
 
 
-![BITWebCertify](/media/files/BIT2.png)
+![BITWebCertify](https://ws4.sinaimg.cn/large/006tKfTcly1fr0ka5oyhaj309c0cc75k.jpg)
 
-![BITWebCertify](/media/files/BIT1.png)
+![BITWebCertify](https://ws1.sinaimg.cn/large/006tKfTcly1fr0kaign46j305m04zmxa.jpg)
 
 更新：
 
