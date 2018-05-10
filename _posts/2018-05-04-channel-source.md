@@ -284,7 +284,7 @@ recv 的逻辑和 send 互为表里，相互配合，各自维护一个 index �
 
 ## Summary
 
-软件工程没有银弹，Channel 也不是万能的。在高并发写多读少的情况下，Channel 内部的那把锁产生的代价可能会非常大，这时可能就需要考虑使用其他的数据结构+共享机制了。
+软件工程没有银弹，Channel 也不是万能药。在高并发写多读少的情况下，Channel 内部的那把锁产生的代价可能会非常大，这时可能就需要考虑使用其他的数据结构+共享机制了。
 
 产生这个想法是在分析异步日志库的性能问题是发现的，多goroutine写+单goroutine读，中间只通过一个 Channel 来传递日志信息，性能损耗非常可观，关于异步日志库的问题，后续会有更多博客发出来。
 
@@ -293,8 +293,3 @@ recv 的逻辑和 send 互为表里，相互配合，各自维护一个 index �
 - [channel in Go's runtime](http://skoo.me/go/2013/09/20/go-runtime-channel)
 - [Go Channel源码分析](https://github.com/yangyuqian/technical-articles/blob/master/go/channel-implementation-cn.md)
 - [Go Channel 源码剖析](http://legendtkl.com/2017/08/06/golang-channel-implement/)
-
-
-#### More:
-
-- 博客使用 Disqus 作为评论区，需要自备梯子才能看到。
