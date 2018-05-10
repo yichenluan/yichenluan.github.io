@@ -117,7 +117,7 @@ google_analytics: "UA-118696608-1"
 
 # --- Misc --- #
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-disqus: "jinke"
+#disqus: "jinke"
 
 # Facebook App ID
 # fb_app_id: ""
@@ -150,7 +150,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
+      comments: false  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
   -
     scope:
