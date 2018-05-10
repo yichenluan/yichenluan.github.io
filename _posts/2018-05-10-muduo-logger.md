@@ -14,7 +14,7 @@ Muduo Logging 的代码由 Logging.h/cc, LogStream.h/cc , LogFile.h/cc , AsyncLo
 这部分由 Logging.h/cc 以及 LogStream.h/cc 组合完成。首先外部代码对日志库所有的访问入口都是通过定义好的宏来：
 
 
-```C++
+```c
 #define LOG_TRACE if (muduo::Logger::logLevel() <= muduo::Logger::TRACE) \
   muduo::Logger(__FILE__, __LINE__, muduo::Logger::TRACE, __func__).stream()   // __func__ 预定义符是 gcc 引入的，没什么特别的，见 https://gcc.gnu.org/onlinedocs/gcc/Function-Names.html
 #define LOG_DEBUG if (muduo::Logger::logLevel() <= muduo::Logger::DEBUG) \
@@ -25,7 +25,7 @@ Muduo Logging 的代码由 Logging.h/cc, LogStream.h/cc , LogFile.h/cc , AsyncLo
 
 我们以 LOG_INFO 为例，将其展开后为：
 
-```C++
+```c++
 muduo::Logger(__FILE__, __LINE__).stream() << "This is a log."
 ```
 
@@ -42,7 +42,7 @@ muduo::Logger(__FILE__, __LINE__).stream() << "This is a log."
 
 下面给出 Logger 类的整体结构：
 
-```C++
+```c
 class Logger {
     // 定义 LogLevel 枚举类型
     enum LogLevel {
@@ -70,7 +70,7 @@ class Logger {
 
 我们从构造函数入手：
 
-```C++
+```c
 
 Logger::Logger(SourceFile file, int line)
   : impl_(INFO, 0, file, line)
@@ -81,7 +81,7 @@ Logger::Logger(SourceFile file, int line)
 初始化一个 Logger 其实是初始化它的 Impl 对象：
 
 
-```C++
+```c
 Logger::Impl::Impl(LogLevel level, int savedErrno, const SourceFile& file, int line)
   : time_(Timestamp::now()),
     stream_(),
@@ -100,23 +100,23 @@ Logger::Impl::Impl(LogLevel level, int savedErrno, const SourceFile& file, int l
 }
 ```
 
-#####TODO. 为什么要使用私有 Impl 类，有什么好处？什么情况下这样用？
+##### TODO. 为什么要使用私有 Impl 类，有什么好处？什么情况下这样用？
 
 在构造过程中，通过 formatTime() 将日期、时间信息传递给 stream对象；这里面要注意的点有：
 
-**Cache:** 区对于一个时间信息： 20180426 14:50:34.345346Z，前面的 20180426 14:50:34 是缓存在 t_time[64] 这个 __thread（线程私有变量）变量里的。同时通过 t_lastSecond 来标识缓存的有消息。也就是说，同1s内打印的日志，只有微秒部分是需要被格式化的。（格式化总是效率低的，想想 Mario 里的 Sprintf）
+**Cache:** 对于一个时间信息： 20180426 14:50:34.345346Z，前面的 20180426 14:50:34 是缓存在 t_time[64] 这个 __thread（线程私有变量）变量里的。同时通过 t_lastSecond 来标识缓存的有消息。也就是说，同1s内打印的日志，只有微秒部分是需要被格式化的。（格式化总是效率低的，想想 Mario 里的 Sprintf）
 {: .box-note}
 
 然后将线程信息输入给 stream。
 
-**Cache** 线程id也是类似的被缓存到了 __thread 变量中。每次只需要简单的拷贝字符串即可。
+**Cache:** 线程id也是类似的被缓存到了 __thread 变量中。每次只需要简单的拷贝字符串即可。
 {: .box-note}
 
 最后将日志级别信息输入到 stream 中。
 
 完成构造之后，就是用户的日志信息同样的输入到 stream 之中。我们先不考虑 steam 的具体情况，看下析构 Logger 这个匿名对象会发生什么事。
 
-```C++
+```c
 Logger::~Logger()
 {
   impl_.finish();
@@ -132,7 +132,7 @@ Logger::~Logger()
 
 finish函数会把log格式后面的信息添加进去，包括文件名、行数信息。
 
-**Compile time calculation** 其中，文件名的剪切工作是通过strrchr函数在编译期间求得的，这个有时间再看吧。。。参考 https://www.zhihu.com/question/65616567
+**Compile time calculation:** 其中，文件名的剪切工作是通过strrchr函数在编译期间求得的，这个有时间再看吧。。。参考 https://www.zhihu.com/question/65616567
 {: .box-note}
 
 析构函数非常清晰明了，在这里会取到之前放在 stream 中的字符串，并调用 g_output() 对这条日志输出。
@@ -141,7 +141,7 @@ finish函数会把log格式后面的信息添加进去，包括文件名、行�
 
 LogStream 及其相关类的结构为：
 
-```C++
+```c
 class LogStream {
     typedef detail::FixedBuffer<detail::kSmallBuffer> Buffer;
     Buffer buffer_;
@@ -167,7 +167,7 @@ class FixedBuffer {
 
 可以看到`Buffer`提供的`append()`接口入参是`const char* buf, size_t len`，然后内部通过 `memcpy` 来复制字符串。
 
-**Cache** 线回顾 Logger，日志信息的固定格式都为定长的，通过 T 传入stream，这样就直接通过memcpy来拷贝，避免了每次通过 strlen 来获取字符串长度。
+**Cache:** 回顾 Logger，日志信息的固定格式都为定长的，通过 T 传入stream，这样就直接通过memcpy来拷贝，避免了每次通过 strlen 来获取字符串长度。
 {: .box-note}
 
 
@@ -183,7 +183,7 @@ class FixedBuffer {
 
 Muduo这部分的内容在 AsyncLogging.h/cc 中。下面给出 AsyncLogging 类的大体结构。
 
-```C++
+```c
 
 class AsyncLogging {
 public:
@@ -208,7 +208,7 @@ private:
 
 我们称 append 为前台，threadFunc 后台，Muduo logging 的思想为，前台、后台分别 持有 2 个 buffer 和一个 buffervector。前台写满一个buffer后，放入它的buffervector，并通知后台，后台来处理buffer的交换和填充。
 
-```C++
+```c
 void AsyncLogging::append(const char* logline, int len)
 {
     muduo::MutexLockGuard lock(mutex_);
@@ -231,7 +231,7 @@ append 的代码很好理解，就是当前buffer满了后，交给vector，通�
 
 那么这里还少了的逻辑就是何时 next_buffer 会被填充。看 threadFunc() 的代码:
 
-```C++
+```c
 void AsyncLogging::threadFunc() {
     BufferPtr newBuffer1(new Buffer);
     BufferPtr newBuffer2(new Buffer);
@@ -265,7 +265,7 @@ void AsyncLogging::threadFunc() {
 
 这里只描述最常见的一种情况，更多的在书中 P117。
 
-```C++
+```c
 0. 前台、后台初始化情况：currBuffer: A; nextBuffer: B; newBuffer1: C; newBuffer2: D
 1. 前台写满 A，进行一系列操作后，通知后台，此时：currBuffer: B, nextBuffer: NULL, buffers: [A], newBuffer1: C; newBuffer2: D, buffersToWrite: []
 2. Lock()
