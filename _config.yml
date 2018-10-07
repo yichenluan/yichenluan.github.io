@@ -25,6 +25,7 @@ description: JinKe
 navbar-links:
   Archive: "archive"
   TAGS: "tags"
+  Leetcode: "leetcode"
   About Me: "aboutme"
 
 # Image to show in the navigation bar - image must be a square (width = height)
@@ -142,6 +143,9 @@ paginate: 5
 kramdown:
   input: GFM
 
+collections:
+- leetcode
+
 # Default YAML values (more information on Jekyll's site)
 defaults:
   -
@@ -158,6 +162,14 @@ defaults:
     values:
       layout: "page"
       show-avatar: true
+  -
+    scope:
+      path: ""
+      type: "leetcode"
+    values:
+      layout: "post"
+      comments: false  # add comments to all blog posts
+      social-share: true # add social media sharing buttons to all blog posts
 
 # Use tags index page and make tags on each post clickable
 link-tags: true
