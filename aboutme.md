@@ -6,7 +6,7 @@ subtitle: Ask Me Anything
 
 我是金科，二十四岁，这是我的基本信息。
 
-- 2017.07 ~ 2018.11 : Baidu - C++ / Go
+- 2017.07 ~ 2018.12 : Baidu - C++ / Go
 - 2016.03 ~ 2016.10 : ByteDance - Python
 
 你可以在下面这些地方找到我。
