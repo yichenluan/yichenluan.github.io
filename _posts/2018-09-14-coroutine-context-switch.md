@@ -15,11 +15,11 @@ Coroutine 中文译为协程，协程的概念现在出现的越来越多。[Pro
 
 一切看起来很美好，直到我们需要直面性能问题。当我们只需要同时处理 10 个连接时，我们让 10 个线程来处理，当我们需要同时处理 10K 个连接时，我们能用 10K 个线程来处理吗？答案当然是不可以，至少现在不可以。原因自然是老生常谈的上下文调度与切换、内存同步等开销。[Measuring context switching and memory overheads for Linux threads](https://eli.thegreenplace.net/2018/measuring-context-switching-and-memory-overheads-for-linux-threads/) 这篇文章测量了在现在（2018 年）线程上下文切换的代价：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180912152246.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103238.png)
 
 简单来说，线程的上下文切换只比在内存中复制 64 K 数据稍快点。看起来似乎已经够快了，但是从数量级上与 [Latency Numbers Every Programmer Should Know](https://people.eecs.berkeley.edu/~rcs/research/interactive_latency.html) 给出的数据比较，着实不够快，至少试图在一个机器上跑 10K 个线程不是一件有意义的事情。
 
-![](http://p890o7lc8.bkt.clouddn.com/20180912153612.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103254.png)
 
 那该怎么办呢？我们可以使用异步操作：通过回调函数来响应被阻塞的操作结果，然后继续被中断的逻辑。不过让我们回到逻辑流和控制流的话题，使用异步回调，就意味着我们需要将原本连续的逻辑流打破，使用各种回调来组织逻辑，而为了在回调之间保证控制状态（数据信息）的一致性，需要用户自己维护每个回调阶段的状态。这样子，逻辑流和控制流不再等价，我们付出的代价是手动维护控制状态信息。
 
@@ -91,7 +91,7 @@ jmp _add
 编译器为我们生成的 Callee Stack Frame 如下:
 
 
-![](http://p890o7lc8.bkt.clouddn.com/20180913174537.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103325.png)
 
 汇编代码为：
 
@@ -190,7 +190,7 @@ __asm (
 
 `bthread_make_fcontext` 的汇编还算容易懂，基于此，我们可以画出 Coroutine Stack 初始化后的 Layout：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180914135004.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103349.png)
 
 其中 rax 寄存器就是 `bthread_make_fcontext` 的返回值，也就是 `bthread_fcontext_t`。
 
@@ -244,11 +244,11 @@ Context Switch 的过程就显得有些复杂了。当然，核心思想还是�
 首次调度是指该 Coroutine 的 Stack Frame 如 `make_fcontext` 中画出的那样，于是 Context Switch 意味着：
 
 
-![](http://p890o7lc8.bkt.clouddn.com/20180914142022.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103410.png)
 
 非首次调度是指该 Coroutine 已经运行过一段时间了，那么其 Stack Frame 就如上图右二所示，于是 Context Switch 意味着：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180914142617.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103426.png)
 
 瞧！这里面最精妙的就是首次调度和非首次调度之间细微的差别。首次调度继续运行的地址（R8）就是 make context 时保存的 fn（协程入口函数，往往与调度器有关），非首次调度继续运行的地址（R8）则恰好就是我们在第 2 节（Stack Frame）一再强调的 Return Address，也就是协程被切换的位置。
 

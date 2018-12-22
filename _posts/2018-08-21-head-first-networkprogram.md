@@ -18,13 +18,13 @@ tags: [Linux]
 
 下图就是著名的 TCP 状态变化图。
 
-![](http://p890o7lc8.bkt.clouddn.com/20180722172859.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102345.png)
 
 我们使用 netstat 观察端口上的连接时，显示的就是这 11 种状态。
 
 ## 2.2 TCP 连接建立
 
-![](http://p890o7lc8.bkt.clouddn.com/20180722145217.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102418.png)
 
 - TCP 建立连接为什么需要 3 次握手呢？
 
@@ -35,14 +35,14 @@ tags: [Linux]
  
 ## 2.3 TCP 连接交互
 
-![](http://p890o7lc8.bkt.clouddn.com/20180822154218.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102448.png)
 
 - TCP 重传机制（超时重传、快速重传、RTT 算法）？滑动窗口（可靠传输、有序、Nagle算法）？流量控制（通告窗口）？拥塞处理（慢启动、拥塞避免算法、快速恢复）？
 
 
 ## 2.4 TCP 连接终止
 
-![](http://p890o7lc8.bkt.clouddn.com/20180722145754.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102511.png)
 
 TIME_WAIT 的目的：
 
@@ -251,7 +251,7 @@ man: [close](http://man7.org/linux/man-pages/man2/close.2.html)
 
 ### 阻塞 Read / Write
 
-![](http://p890o7lc8.bkt.clouddn.com/20180726200438.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102553.png)
 
 一图胜千言。
 
@@ -276,11 +276,11 @@ man: [close](http://man7.org/linux/man-pages/man2/close.2.html)
 
 ### 非阻塞 Read / Write
 
-![](http://p890o7lc8.bkt.clouddn.com/20180726204148.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102614.png)
 
 ## 4.3 异步 IO
 
-![](http://p890o7lc8.bkt.clouddn.com/20180726204838.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102633.png)
 
 # 五、并发模型
 
@@ -417,13 +417,13 @@ if __name__ == "__main__":
 
 Non-Blocking IO 上文已经讨论过了，什么是 IO Multiplexing ？
 
-![](http://p890o7lc8.bkt.clouddn.com/20180824154409.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102706.png)
 
 就是所谓的 IO 多路复用，复用的是什么呢？复用的线程。通过诸如 `select`、`poll`、`epoll` 这种技术使得一个线程可以监听多个连接上的读、写事件。
 
 IO Multiplexing 本文只讨论 Linux 下的 Epoll，原因见 epoll 这个 Linux Kernel Patch：[Improving (network) I/O performance ...](http://www.xmailserver.org/linux-patches/nio-improve.html)。
 
-![](http://p890o7lc8.bkt.clouddn.com/20180813143411.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102754.png)
 
 ### Epoll Usage
 
@@ -431,7 +431,7 @@ IO Multiplexing 本文只讨论 Linux 下的 Epoll，原因见 epoll 这个 Linu
 
 关于 LT（Level-triggered）和 ET（Edge-triggered）：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180813155652.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102812.png)
 
 ### Why Must Non-Blocking IO
 
@@ -445,7 +445,7 @@ IO Multiplexing 本文只讨论 Linux 下的 Epoll，原因见 epoll 这个 Linu
 
 ET 模式下无需多做考虑，必须使用 `Non-Blocking IO`。
 
-![](http://p890o7lc8.bkt.clouddn.com/20180824155812.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102832.png)
 
 举个例子：client 和 server 通信，server 从连接中 read 到部分数据后，不再继续 read（没有读完缓冲区内的所有数据），这时应用层包不完整，server 无法回应 client，而 epoll 不会再提示 `EPOLLIN` 事件，这条连接直接 hang 住。
 
@@ -473,7 +473,7 @@ LT 模式看起来没这个问题，反正没读完会一直提示。但是因�
 1. 对于 `write` 而言，如果指定 `write` 的数据大小大于写缓冲区的大小，将阻塞至写完为止。
 2. 对于 `read` 而言，`epoll` 返回 `EPOLLIN`，不代表一定可写，见 man [select](http://man7.org/linux/man-pages/man2/select.2.html).
 
-	![](http://p890o7lc8.bkt.clouddn.com/20180813172132.png)
+	![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102907.png)
 	
 ### Epoll Implementation
 
@@ -556,7 +556,7 @@ Reactor 模式就是事件驱动模型。一般由一个 `event dispatcher`（�
 
 上面例子中的 `L42 ~ L46` 就是 `event loop`，事件发生后，交由 `handle_xxx` 处理，这样子，网络框架就实现了业务逻辑和事件的分离。对于单线程 Reactor，戈君评价如下：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180814144418.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103157.png)
 
 图中指出，一个 event loop 对应于一个线程，但是 handle callback 往往是交由业务实现，如果业务回调运行时间很长，则性能非常不可控，因为阻塞在运行 callback 时会导致其他就绪事件无法分发。所以使用这种模型的服务往往是 IO-Bound，或者确定 callback 运行时间很短的专有服务。
 
@@ -576,13 +576,13 @@ Redis 就是这种模型。标准的 IO-Bound 服务，瓶颈几乎一定在网�
 
 方案 8 是解决方案 6、7 为每个请求/连接创建线程的缺陷，可以使用固定大小的线程池。网络 IO 交由 Reactor 线程处理，计算任务则交给 thread pool 处理。
 
-![](http://p890o7lc8.bkt.clouddn.com/WechatIMG91.jpeg)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102937.png)
 
 看上去挺美好，实际上也确实不错，在 IO 压力不大，计算任务存在阻塞（数据库请求、写文件等）非常适合这种方案。
 
 不过来看下戈君的评价：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180814151027.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222102957.png)
 
 嗯。。。一针见血：
 
@@ -594,7 +594,7 @@ Redis 就是这种模型。标准的 IO-Bound 服务，瓶颈几乎一定在网�
 
 ## 5.9 方案 9/10（Reactors in threads/processes）
 
-![](http://p890o7lc8.bkt.clouddn.com/WechatIMG92.jpeg)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103019.png)
 
 非常不错的多线程/进程方案。 one loop per thread + 等同于 CPU 核数的 IO Thread。
 
@@ -606,7 +606,7 @@ Redis 就是这种模型。标准的 IO-Bound 服务，瓶颈几乎一定在网�
 
 方案 11 是方案 8 和 方案 9 的混合，使用多个 Reactor 来处理 IO 的同时，可以使用线程池来处理计算，能够适用于大部分的场景，因为 thread pool 的数目应当是可调控的，当设为 0 时，就退化为方案 9.
 
-![](http://p890o7lc8.bkt.clouddn.com/WechatIMG93.jpeg)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103040.png)
 
 ## 5.11 Examples
 
@@ -630,7 +630,7 @@ Redis 就是这种模型。标准的 IO-Bound 服务，瓶颈几乎一定在网�
 
 golang 的 `goroutine` 和 brpc 的 `bthread` 都是 M:N 的用户态线程库。brpc 暂且不提（只看了 bthread 的部分，还没看网络框架的部分），golang 是将 `read` 和 `write` 进行了 hook，给应用层以同步阻塞调用的假象。实际上底层依旧是由 `epoll` 来完成 `IO Multiplexing` 的工作。
 
-![](http://p890o7lc8.bkt.clouddn.com/20180824171709.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181222103102.png)
 
 # 六、More About RPC
 
