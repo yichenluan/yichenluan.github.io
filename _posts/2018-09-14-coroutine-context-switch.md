@@ -73,7 +73,7 @@ int main() {
 
 那么，一个典型的 Caller Stack Frame 是这样的：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180913173125.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181224160658.png)
 
 相应的汇编代码为：
 
