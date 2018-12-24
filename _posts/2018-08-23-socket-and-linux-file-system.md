@@ -7,7 +7,7 @@ tags: [Linux]
 
 本文目标是深入探讨下 sockfd 指向的 socket 到底是啥。首先，socket 当然是文件（Unix 下又有什么不是文件呢），但是我希望能够将 socket 和普通文件联系起来，有一个明确的概念，也就是：文件在 Linux 下到底是什么？Socket 又与其有何区别？
 
-![](http://p890o7lc8.bkt.clouddn.com/20180823145034.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181224165832.png)
 
 接下来的讨论假定读者已经阅读过 APUE 第三章，对 Unix 文件系统有基本了解。然后我们再来看 Linux 下的文件系统结构。
 
@@ -152,7 +152,7 @@ struct inode_operations {
 
 到现在为止，我们终于对 Linux 文件系统有一个较为清晰的认识了：
 
-![](http://p890o7lc8.bkt.clouddn.com/20180823174916.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181224165900.png)
 
 ----
 
@@ -253,6 +253,6 @@ static inline struct socket *SOCKET_I(struct inode *inode)
 }
 ```
 
-![](http://p890o7lc8.bkt.clouddn.com/20180725194555.png)
+![](https://sleepy-1256633542.cos.ap-beijing.myqcloud.com/20181224165918.png)
 
 终于，socket 与 Linux 文件系统的关系，已经了然于胸。
