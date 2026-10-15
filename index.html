@@ -5,6 +5,13 @@ subtitle: Stay Hungry, Stay Foolish.
 use-site-title: true
 ---
 
+<script>
+  // Preserve lesson links from the guide's earlier root-domain deployment.
+  if (location.pathname === '/' && location.hash.startsWith('#lesson=')) {
+    location.replace('/snowboard/' + location.search + location.hash);
+  }
+</script>
+
 <div class="posts-list">
   {% for post in paginator.posts %}
   <article class="post-preview">
